@@ -73,13 +73,58 @@ export function StepCard({
   );
 }
 
-export function FlowIcon({ icon, label }: { icon: string; label: string }) {
+/**
+ * FlowIcon — same props (icon, label) as before.
+ * `index` and `total` are optional additions so the parent page can pass
+ * the step's position in the sequence; when omitted, the component falls
+ * back to its original flat styling so nothing breaks if unused.
+ */
+export function FlowIcon({
+  icon,
+  label,
+  index = 0,
+  total = 1,
+}: {
+  icon: string;
+  label: string;
+  index?: number;
+  total?: number;
+}) {
+  const isLast = index === total - 1;
+  // 0 -> lightest tint, 1 -> deepest sage, eased so early steps don't look washed out
+  const progress = total > 1 ? index / (total - 1) : 0;
+
   return (
-    <div className="flex flex-col items-center gap-2 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary-container text-xl shadow-low">
+    <div className="group flex flex-col items-center gap-3 text-center">
+      <div
+        className={`relative flex h-16 w-16 items-center justify-center rounded-full text-2xl shadow-low ring-1 ring-inset ring-black/5 transition-transform duration-200 group-hover:-translate-y-1 group-hover:shadow-medium md:h-[4.25rem] md:w-[4.25rem] ${
+          isLast
+            ? "bg-deep-sage text-on-primary shadow-medium ring-deep-sage/20"
+            : "bg-secondary-container text-on-secondary-container"
+        }`}
+        style={
+          !isLast
+            ? {
+                backgroundColor: `color-mix(in srgb, var(--color-secondary-container) ${100 - progress * 35}%, var(--color-deep-sage) ${progress * 35}%)`,
+              }
+            : undefined
+        }
+      >
         <span aria-hidden="true">{icons[icon] ?? "✦"}</span>
+        {isLast && (
+          <span
+            className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-on-primary text-[10px] text-deep-sage shadow-low"
+            aria-hidden="true"
+          >
+            ✓
+          </span>
+        )}
       </div>
-      <span className="max-w-[88px] text-xs font-medium text-on-surface-variant">
+      <span
+        className={`max-w-[92px] text-xs font-medium leading-snug ${
+          isLast ? "font-semibold text-on-surface" : "text-on-surface-variant"
+        }`}
+      >
         {label}
       </span>
     </div>

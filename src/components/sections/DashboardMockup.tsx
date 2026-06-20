@@ -1,6 +1,6 @@
 export function DashboardMockup() {
   return (
-    <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+    <div className="relative mx-auto w-full max-w-lg px-4 pt-10 pb-14 lg:max-w-none lg:px-10 lg:pt-12 lg:pb-16">
       <div className="rounded-2xl border border-light-border bg-surface-container-lowest p-4 shadow-high md:p-6">
         <div className="mb-4 flex items-center justify-between">
           <div>
@@ -75,12 +75,12 @@ export function DashboardMockup() {
         </div>
       </div>
 
-      <div className="absolute -left-4 top-8 hidden rounded-xl border border-light-border bg-white px-4 py-3 shadow-high md:block">
+      <div className="absolute -left-2 -top-4 hidden rounded-xl border border-light-border bg-white px-4 py-3 shadow-high md:block lg:-left-6">
         <p className="text-xs text-on-surface-variant">New Lead</p>
         <p className="text-sm font-semibold text-on-surface">WhatsApp Inquiry</p>
       </div>
 
-      <div className="absolute -right-2 bottom-12 hidden rounded-xl border border-light-border bg-white px-4 py-3 shadow-high md:block">
+      <div className="absolute -right-2 -bottom-4 hidden rounded-xl border border-light-border bg-white px-4 py-3 shadow-high md:block lg:-right-6">
         <p className="text-xs text-on-surface-variant">Site Visit</p>
         <p className="text-sm font-semibold text-on-surface">Scheduled Today</p>
       </div>
