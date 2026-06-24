@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { AgentCard } from "@/components/real-estate/AgentCard";
+import { CompanyQuickLinks } from "@/components/real-estate/company/CompanyQuickLinks";
 import { CategoryCard } from "@/components/real-estate/homepage/CategoryCard";
 import { PropertySearchForm } from "@/components/real-estate/homepage/PropertySearchForm";
 import { RealEstateFooter } from "@/components/real-estate/homepage/RealEstateFooter";
@@ -188,7 +189,29 @@ export default function LuxuryAgencyTemplatePage() {
                 );
               })}
             </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="outline" size="lg">
+                <Link href="/template-preview/luxury-agency/about">
+                  About Aurelia
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg">
+                <Link href="/template-preview/luxury-agency/faq">Read FAQ</Link>
+              </Button>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section-space bg-surface-container-low">
+        <div className="container-nexora">
+          <SectionHeader
+            eyebrow="Company Pages"
+            title="See How the Full Agency Website Comes Together"
+            subtitle="Explore the about, mission, story, careers, and FAQ pages included in this template preview."
+          />
+          <CompanyQuickLinks />
         </div>
       </section>
 

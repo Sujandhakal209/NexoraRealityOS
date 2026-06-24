@@ -11,7 +11,8 @@ const navLinks = [
   { label: "Rent", href: "/template-preview/luxury-agency/properties" },
   { label: "Properties", href: "/template-preview/luxury-agency/properties" },
   { label: "Agents", href: "/template-preview/luxury-agency/agents" },
-  { label: "About", href: "/template-preview/luxury-agency#about" },
+  { label: "About", href: "/template-preview/luxury-agency/about" },
+  { label: "FAQ", href: "/template-preview/luxury-agency/faq" },
   { label: "Contact", href: "/template-preview/luxury-agency#contact" },
 ];
 

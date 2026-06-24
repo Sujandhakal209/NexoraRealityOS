@@ -5,7 +5,7 @@ export function RealEstateFooter() {
   return (
     <footer id="contact" className="bg-charcoal text-inverse-on-surface">
       <div className="container-nexora py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div>
             <Link
               href="/template-preview/luxury-agency"
@@ -57,6 +57,54 @@ export function RealEstateFooter() {
                   className="hover:text-accent"
                 >
                   Agents
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">
+              Company
+            </h3>
+            <ul className="mt-5 space-y-3 text-sm text-inverse-on-surface/72">
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/about"
+                  className="hover:text-accent"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/mission"
+                  className="hover:text-accent"
+                >
+                  Our Mission
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/story"
+                  className="hover:text-accent"
+                >
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/careers"
+                  className="hover:text-accent"
+                >
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/faq"
+                  className="hover:text-accent"
+                >
+                  FAQ
                 </Link>
               </li>
             </ul>
