@@ -12,18 +12,21 @@
   --color-on-surface-variant: #414844;
   --color-inverse-surface: #263238;
   --color-inverse-on-surface: #e6f3fb;
+  --color-foreground: #1b2424;
   --color-outline: #727974;
   --color-outline-variant: #c1c8c2;
   --color-surface-tint: #446555;
-  --color-primary: #315343;
+  --color-primary: #153c3b;
   --color-on-primary: #ffffff;
   --color-primary-container: #496b5a;
   --color-on-primary-container: #c4ead5;
   --color-inverse-primary: #aacfba;
-  --color-secondary: #476554;
+  --color-secondary: #8b6f47;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #c6e8d2;
   --color-on-secondary-container: #4b6958;
+  --color-accent: #c6a15b;
+  --color-accent-foreground: #1d1810;
   --color-tertiary: #085650;
   --color-on-tertiary: #ffffff;
   --color-tertiary-container: #2c6e68;
@@ -46,14 +49,22 @@
   --color-light-border: #e8e1d6;
   --color-problem-accent: #e07a5f;
   --font-sans: var(--font-plus-jakarta), "Inter", system-ui, sans-serif;
+  --spacing-section: 96px;
+  --spacing-section-sm: 64px;
+  --spacing-container: 32px;
+  --radius-button: 10px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
   --shadow-low: 0px 4px 20px rgba(73, 107, 90, 0.04);
   --shadow-high: 0px 12px 32px rgba(38, 50, 56, 0.08);
+  --shadow-luxury: 0 24px 70px rgba(21, 60, 59, 0.13);
 }
 
 :root {
   --surface: #f4faff;
   --surface-dim: #cfdce4;
   --surface-bright: #f4faff;
+  --foreground: #1b2424;
   --surface-container-lowest: #ffffff;
   --surface-container-low: #e9f6fd;
   --surface-container: #e3f0f8;
@@ -66,13 +77,15 @@
   --outline: #727974;
   --outline-variant: #c1c8c2;
   --surface-tint: #446555;
-  --primary: #315343;
+  --primary: #153c3b;
   --on-primary: #ffffff;
   --primary-container: #496b5a;
   --on-primary-container: #c4ead5;
   --inverse-primary: #aacfba;
-  --secondary: #476554;
+  --secondary: #8b6f47;
   --on-secondary: #ffffff;
+  --accent: #c6a15b;
+  --accent-foreground: #1d1810;
   --secondary-container: #c6e8d2;
   --on-secondary-container: #4b6958;
   --tertiary: #085650;
@@ -95,6 +108,10 @@
   --charcoal: #263238;
   --muted-gold: #c8a96a;
   --light-border: #e8e1d6;
+  --radius-button: 10px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --shadow-luxury: 0 24px 70px rgba(21, 60, 59, 0.13);
 }
 
 html {
@@ -103,7 +120,7 @@ html {
 
 body {
   background: var(--warm-white);
-  color: var(--on-surface);
+  color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -136,6 +153,19 @@ body {
   font-size: 30px;
   font-weight: 700;
   line-height: 36px;
+}
+
+.display-xl {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 52px;
+}
+
+@media (min-width: 768px) {
+  .display-xl {
+    font-size: 64px;
+    line-height: 72px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -181,6 +211,22 @@ body {
 
 .shadow-high {
   box-shadow: var(--shadow-high);
+}
+
+.shadow-luxury {
+  box-shadow: var(--shadow-luxury);
+}
+
+.section-space {
+  padding-top: var(--spacing-section-sm);
+  padding-bottom: var(--spacing-section-sm);
+}
+
+@media (min-width: 1024px) {
+  .section-space {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+  }
 }
 
 .card-hover {
