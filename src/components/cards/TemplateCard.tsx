@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
 interface TemplateCardProps {
@@ -108,8 +109,14 @@ export function TemplateCard({
 
         <div className={`mt-5 flex gap-3 ${showPreview ? "flex-col sm:flex-row" : ""}`}>
           {showPreview && (
-            <Button variant="outline" size="sm" className="flex-1">
-              Preview
+            <Button asChild variant="outline" size="sm" className="flex-1">
+              <Link
+                href="/template-preview/luxury-agency"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Preview
+              </Link>
             </Button>
           )}
           <Button
