@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { Mail, Phone, Star } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import type { Agent } from "@/lib/real-estate-template";
+import { getAgentProfilePath, type Agent } from "@/lib/real-estate-template";
 import { cn } from "@/lib/utils";
 
 interface AgentCardProps {
@@ -9,28 +10,33 @@ interface AgentCardProps {
 }
 
 export function AgentCard({ agent, className }: AgentCardProps) {
+  const href = getAgentProfilePath(agent);
+
   return (
     <article
       className={cn(
-        "overflow-hidden rounded-[var(--radius-card)] border border-light-border bg-surface-container-lowest shadow-low",
+        "card-hover overflow-hidden rounded-[var(--radius-card)] border border-light-border bg-surface-container-lowest shadow-low",
         className
       )}
     >
-      <div className="aspect-[5/4] overflow-hidden bg-surface-container">
+      <Link href={href} className="block aspect-[5/4] overflow-hidden bg-surface-container">
         <div
           role="img"
           aria-label={agent.name}
-          className="h-full w-full bg-cover bg-center"
+          className="h-full w-full bg-cover bg-center transition duration-500 hover:scale-105"
           style={{ backgroundImage: `url(${agent.image})` }}
         />
-      </div>
+      </Link>
 
       <div className="p-5">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-xl font-semibold text-on-surface">
+            <Link
+              href={href}
+              className="text-xl font-semibold text-on-surface transition hover:text-primary"
+            >
               {agent.name}
-            </h3>
+            </Link>
             <p className="mt-1 text-sm text-on-surface-variant">
               {agent.role}
             </p>
@@ -57,12 +63,18 @@ export function AgentCard({ agent, className }: AgentCardProps) {
         </div>
 
         <div className="mt-5 flex gap-3">
-          <Button variant="primary" className="flex-1">
-            <Phone aria-hidden="true" />
-            Call
+          <Button asChild variant="primary" className="flex-1">
+            <Link href={href}>View Profile</Link>
           </Button>
-          <Button variant="outline" size="icon" aria-label={`Email ${agent.name}`}>
-            <Mail aria-hidden="true" />
+          <Button asChild variant="outline" size="icon" aria-label={`Call ${agent.name}`}>
+            <a href={`tel:${agent.phone.replaceAll(" ", "")}`}>
+              <Phone aria-hidden="true" />
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="icon" aria-label={`Email ${agent.name}`}>
+            <a href={`mailto:${agent.email}`}>
+              <Mail aria-hidden="true" />
+            </a>
           </Button>
         </div>
       </div>

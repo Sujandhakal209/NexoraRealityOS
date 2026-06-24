@@ -53,7 +53,7 @@ export function RealEstateFooter() {
               </li>
               <li>
                 <Link
-                  href="/template-preview/luxury-agency#agents"
+                  href="/template-preview/luxury-agency/agents"
                   className="hover:text-accent"
                 >
                   Agents

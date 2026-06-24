@@ -68,7 +68,9 @@ export default function LuxuryAgencyTemplatePage() {
                 </Link>
               </Button>
               <Button asChild variant="luxury" size="lg">
-                <a href="#agents">Meet Advisors</a>
+                <Link href="/template-preview/luxury-agency/agents">
+                  Meet Advisors
+                </Link>
               </Button>
             </div>
           </div>
@@ -201,6 +203,14 @@ export default function LuxuryAgencyTemplatePage() {
             {templateAgents.map((agent) => (
               <AgentCard key={agent.id} agent={agent} />
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link href="/template-preview/luxury-agency/agents">
+                View Agent Directory
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

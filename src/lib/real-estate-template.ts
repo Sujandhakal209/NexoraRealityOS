@@ -24,6 +24,25 @@ export interface Agent {
   image: string;
   dealsClosed: number;
   rating: number;
+  yearsExperience: number;
+  languages: string[];
+  specialties: string[];
+  biography: string;
+  socialLinks: {
+    linkedin: string;
+    instagram: string;
+    facebook: string;
+  };
+  currentListingIds: string[];
+  reviews: AgentReview[];
+}
+
+export interface AgentReview {
+  id: string;
+  author: string;
+  location: string;
+  rating: number;
+  comment: string;
 }
 
 export interface Testimonial {
@@ -335,6 +354,35 @@ export const templateAgents: Agent[] = [
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
     dealsClosed: 124,
     rating: 4.9,
+    yearsExperience: 14,
+    languages: ["English", "Nepali", "Hindi"],
+    specialties: ["Luxury Villas", "Seller Advisory", "Negotiation"],
+    biography:
+      "Aarav leads Aurelia Estates with a calm, research-led approach to high-value residential transactions. He is known for precise pricing strategy, discreet seller representation, and steady negotiation support for families upgrading into landmark homes.",
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+    currentListingIds: ["lp-001", "lp-003", "lp-006"],
+    reviews: [
+      {
+        id: "ar-001",
+        author: "Prakash Rana",
+        location: "Baluwatar",
+        rating: 5,
+        comment:
+          "Aarav gave us realistic pricing guidance and handled every buyer conversation with discipline.",
+      },
+      {
+        id: "ar-002",
+        author: "Maya Gurung",
+        location: "Bhaisepati",
+        rating: 5,
+        comment:
+          "The shortlist was focused, private, and exactly aligned with our family requirements.",
+      },
+    ],
   },
   {
     id: "a-002",
@@ -347,6 +395,35 @@ export const templateAgents: Agent[] = [
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
     dealsClosed: 88,
     rating: 4.8,
+    yearsExperience: 9,
+    languages: ["English", "Nepali"],
+    specialties: ["Apartments", "Relocation", "Private Viewings"],
+    biography:
+      "Mira specializes in refined apartments, rental residences, and relocation searches across Lalitpur. Her clients value her clear communication, viewing preparation, and ability to compare lifestyle details beyond the brochure.",
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+    currentListingIds: ["lp-002", "lp-004", "lp-008", "lp-010"],
+    reviews: [
+      {
+        id: "mr-001",
+        author: "Nisha Thapa",
+        location: "Sanepa",
+        rating: 5,
+        comment:
+          "Mira made our rental search feel organized and protected our time with only serious options.",
+      },
+      {
+        id: "mr-002",
+        author: "Allen Brooks",
+        location: "Jhamsikhel",
+        rating: 4.8,
+        comment:
+          "She explained neighborhoods, commute patterns, and lease terms without rushing the process.",
+      },
+    ],
   },
   {
     id: "a-003",
@@ -359,8 +436,196 @@ export const templateAgents: Agent[] = [
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
     dealsClosed: 76,
     rating: 4.7,
+    yearsExperience: 11,
+    languages: ["English", "Nepali", "Hindi"],
+    specialties: ["Commercial", "Investment", "Land Parcels"],
+    biography:
+      "Kabir advises investors, developers, and business owners on commercial floors, retail frontage, and land acquisitions. He focuses on yield, access, visibility, and long-term positioning before recommending a site.",
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+    currentListingIds: ["lp-005", "lp-007", "lp-009", "lp-012"],
+    reviews: [
+      {
+        id: "kr-001",
+        author: "Sanjay Agrawal",
+        location: "New Baneshwor",
+        rating: 4.7,
+        comment:
+          "Kabir's analysis helped us compare traffic, fit-out cost, and long-term resale prospects.",
+      },
+      {
+        id: "kr-002",
+        author: "Rinchen Lama",
+        location: "Dhapasi",
+        rating: 4.8,
+        comment:
+          "He was direct, responsive, and careful with ownership and documentation checks.",
+      },
+    ],
+  },
+  {
+    id: "a-004",
+    name: "Sahana Pradhan",
+    role: "Buyer Representation Lead",
+    location: "Kathmandu",
+    phone: "+977 9800000004",
+    email: "sahana@example.com",
+    image:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
+    dealsClosed: 67,
+    rating: 4.9,
+    yearsExperience: 8,
+    languages: ["English", "Nepali", "Newari"],
+    specialties: ["Buyer Advisory", "Family Homes", "Schools"],
+    biography:
+      "Sahana guides buyers through school catchments, commute patterns, build quality, and negotiation timing. She is especially strong with families balancing lifestyle goals and long-term resale confidence.",
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+    currentListingIds: ["lp-001", "lp-010", "lp-011"],
+    reviews: [
+      {
+        id: "sr-001",
+        author: "Anup Joshi",
+        location: "Hattiban",
+        rating: 5,
+        comment:
+          "Sahana spotted practical details we would have missed and made the offer stage simple.",
+      },
+      {
+        id: "sr-002",
+        author: "Ritu Maharjan",
+        location: "Lazimpat",
+        rating: 4.9,
+        comment:
+          "She understood our priorities quickly and never pushed us toward the wrong property.",
+      },
+    ],
+  },
+  {
+    id: "a-005",
+    name: "Dev Gurung",
+    role: "Land and Villa Specialist",
+    location: "Bhaktapur",
+    phone: "+977 9800000005",
+    email: "dev@example.com",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    dealsClosed: 58,
+    rating: 4.6,
+    yearsExperience: 10,
+    languages: ["English", "Nepali"],
+    specialties: ["Land", "Villas", "Second Homes"],
+    biography:
+      "Dev works across scenic villa corridors, land parcels, and second-home opportunities. His process emphasizes access roads, services, surrounding development, and practical due diligence before clients commit.",
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+    currentListingIds: ["lp-006", "lp-007", "lp-011"],
+    reviews: [
+      {
+        id: "dr-001",
+        author: "Tashi Sherpa",
+        location: "Nagarkot",
+        rating: 4.7,
+        comment:
+          "Dev knew the hillside market well and helped us understand access, utilities, and pricing.",
+      },
+      {
+        id: "dr-002",
+        author: "Kiran Pandey",
+        location: "Dhapasi",
+        rating: 4.6,
+        comment:
+          "He brought patience and useful context to a land purchase that needed careful checks.",
+      },
+    ],
+  },
+  {
+    id: "a-006",
+    name: "Lina Rai",
+    role: "Client Experience Manager",
+    location: "Lalitpur",
+    phone: "+977 9800000006",
+    email: "lina@example.com",
+    image:
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=80",
+    dealsClosed: 49,
+    rating: 4.8,
+    yearsExperience: 7,
+    languages: ["English", "Nepali"],
+    specialties: ["Concierge Tours", "Rentals", "Client Care"],
+    biography:
+      "Lina coordinates private tours, inquiry follow-up, and post-shortlist support for busy clients. She keeps communication warm, structured, and practical from the first brief to the final handover.",
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+    currentListingIds: ["lp-002", "lp-004", "lp-008"],
+    reviews: [
+      {
+        id: "lr-001",
+        author: "Elena Park",
+        location: "Bakhundole",
+        rating: 4.8,
+        comment:
+          "Lina kept every viewing on schedule and followed up with clear next steps after each visit.",
+      },
+      {
+        id: "lr-002",
+        author: "Manish KC",
+        location: "Sanepa",
+        rating: 4.9,
+        comment:
+          "Her communication was excellent and the whole process felt polished.",
+      },
+    ],
   },
 ];
+
+export const agentLocations = ["All", "Kathmandu", "Lalitpur", "Bhaktapur"] as const;
+export const agentSpecialties = [
+  "All",
+  "Luxury Villas",
+  "Apartments",
+  "Commercial",
+  "Land",
+  "Buyer Advisory",
+  "Rentals",
+] as const;
+
+export function slugifyAgentName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getAgentSlug(agent: Pick<Agent, "name">): string {
+  return slugifyAgentName(agent.name);
+}
+
+export function getAgentProfilePath(agent: Pick<Agent, "name">): string {
+  return `/template-preview/luxury-agency/agents/${getAgentSlug(agent)}`;
+}
+
+export function getAgentBySlug(slug: string): Agent | undefined {
+  return templateAgents.find((agent) => getAgentSlug(agent) === slug);
+}
+
+export function getAgentListings(agent: Pick<Agent, "currentListingIds">) {
+  return listingProperties.filter((property) =>
+    agent.currentListingIds.includes(property.id)
+  );
+}
 
 export const templateTestimonials: Testimonial[] = [
   {
