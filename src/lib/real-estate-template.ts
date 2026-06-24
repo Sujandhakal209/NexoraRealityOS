@@ -42,6 +42,19 @@ export interface Stat {
   helper: string;
 }
 
+export interface PropertyCategory {
+  id: string;
+  name: string;
+  count: string;
+  image: string;
+}
+
+export interface WhyChoosePoint {
+  id: string;
+  title: string;
+  description: string;
+}
+
 export const templateProperties: Property[] = [
   {
     id: "p-001",
@@ -110,6 +123,18 @@ export const templateAgents: Agent[] = [
     dealsClosed: 88,
     rating: 4.8,
   },
+  {
+    id: "a-003",
+    name: "Kabir Basnet",
+    role: "Commercial Property Lead",
+    location: "Kathmandu",
+    phone: "+977 9800000003",
+    email: "kabir@example.com",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    dealsClosed: 76,
+    rating: 4.7,
+  },
 ];
 
 export const templateTestimonials: Testimonial[] = [
@@ -136,20 +161,78 @@ export const templateTestimonials: Testimonial[] = [
 export const templateStats: Stat[] = [
   {
     id: "s-001",
-    label: "Premium Listings",
+    label: "Properties Sold",
+    value: "680+",
+    helper: "Residential, commercial, and land transactions closed.",
+  },
+  {
+    id: "s-002",
+    label: "Active Listings",
     value: "250+",
     helper: "Verified homes, villas, apartments, and land parcels.",
   },
   {
-    id: "s-002",
-    label: "Deal Value",
-    value: "NPR 3.8B",
-    helper: "Closed across residential and developer projects.",
+    id: "s-003",
+    label: "Happy Clients",
+    value: "1,200+",
+    helper: "Buyers, sellers, investors, and developer partners.",
   },
   {
-    id: "s-003",
-    label: "Client Rating",
-    value: "4.9/5",
-    helper: "Average score from buyers, sellers, and investors.",
+    id: "s-004",
+    label: "Years in Business",
+    value: "14",
+    helper: "Local market experience with senior property advisors.",
+  },
+];
+
+export const propertyCategories: PropertyCategory[] = [
+  {
+    id: "apartment",
+    name: "Apartment",
+    count: "86 Listings",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: "villa",
+    name: "Villa",
+    count: "42 Listings",
+    image:
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: "commercial",
+    name: "Commercial",
+    count: "31 Listings",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: "land",
+    name: "Land",
+    count: "58 Listings",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80",
+  },
+];
+
+export const whyChoosePoints: WhyChoosePoint[] = [
+  {
+    id: "advisory",
+    title: "Private Advisory",
+    description:
+      "Senior consultants guide each buyer and seller with market context, realistic pricing, and clear next steps.",
+  },
+  {
+    id: "verified",
+    title: "Verified Inventory",
+    description:
+      "Listings are reviewed for location, ownership details, pricing accuracy, and presentation quality.",
+  },
+  {
+    id: "negotiation",
+    title: "Confident Negotiation",
+    description:
+      "Our team supports offers, site visits, legal coordination, and deal closure with disciplined communication.",
   },
 ];
