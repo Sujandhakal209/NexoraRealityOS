@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Agents", href: "/template-preview/luxury-agency/agents" },
   { label: "About", href: "/template-preview/luxury-agency/about" },
   { label: "FAQ", href: "/template-preview/luxury-agency/faq" },
-  { label: "Contact", href: "/template-preview/luxury-agency#contact" },
+  { label: "Contact", href: "/template-preview/luxury-agency/contact" },
 ];
 
 export function RealEstateNavbar() {
@@ -55,7 +55,7 @@ export function RealEstateNavbar() {
 
         <div className="hidden lg:block">
           <Button asChild variant="accent" size="sm">
-            <Link href="/template-preview/luxury-agency#contact">
+            <Link href="/template-preview/luxury-agency/schedule-viewing">
               Schedule Viewing
             </Link>
           </Button>
@@ -94,7 +94,7 @@ export function RealEstateNavbar() {
           </ul>
           <Button asChild variant="accent" className="mt-3 w-full">
             <Link
-              href="/template-preview/luxury-agency#contact"
+              href="/template-preview/luxury-agency/schedule-viewing"
               onClick={() => setOpen(false)}
             >
               Schedule Viewing

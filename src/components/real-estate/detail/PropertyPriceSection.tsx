@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CalendarCheck, Heart, Phone, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import type { PropertyDetail } from "@/lib/real-estate-template";
@@ -32,9 +33,11 @@ export function PropertyPriceSection({ property }: PropertyPriceSectionProps) {
       )}
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-        <Button variant="accent" size="lg" className="w-full">
-          <CalendarCheck aria-hidden="true" />
-          Schedule Viewing
+        <Button asChild variant="accent" size="lg" className="w-full">
+          <Link href="/template-preview/luxury-agency/schedule-viewing">
+            <CalendarCheck aria-hidden="true" />
+            Schedule Viewing
+          </Link>
         </Button>
         <Button variant="outline" size="lg" className="w-full">
           <Phone aria-hidden="true" />

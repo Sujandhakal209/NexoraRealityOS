@@ -1,10 +1,13 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  CalendarDays,
+  Calculator,
   CheckCircle2,
   Gem,
   Home,
   KeyRound,
+  Mail,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -14,6 +17,7 @@ import { CategoryCard } from "@/components/real-estate/homepage/CategoryCard";
 import { PropertySearchForm } from "@/components/real-estate/homepage/PropertySearchForm";
 import { RealEstateFooter } from "@/components/real-estate/homepage/RealEstateFooter";
 import { RealEstateNavbar } from "@/components/real-estate/homepage/RealEstateNavbar";
+import { NewsletterSubscription } from "@/components/real-estate/leads/LeadForms";
 import { PropertyCard } from "@/components/real-estate/PropertyCard";
 import { StatsCard } from "@/components/real-estate/StatsCard";
 import { TestimonialCard } from "@/components/real-estate/TestimonialCard";
@@ -255,6 +259,65 @@ export default function LuxuryAgencyTemplatePage() {
         </div>
       </section>
 
+      <section className="section-space bg-surface-container-low">
+        <div className="container-nexora">
+          <SectionHeader
+            eyebrow="Lead Capture Engine"
+            title="Multiple Ways to Turn Visitors Into Qualified Leads"
+            subtitle="The template includes visible conversion paths for viewings, seller valuations, inquiries, and market subscriptions."
+          />
+          <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+            <NewsletterSubscription compact />
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  title: "Book Viewings",
+                  text: "Collect availability and property preference.",
+                  href: "/template-preview/luxury-agency/schedule-viewing",
+                  icon: CalendarDays,
+                },
+                {
+                  title: "Value Homes",
+                  text: "Capture seller intent before they list.",
+                  href: "/template-preview/luxury-agency/valuation",
+                  icon: Calculator,
+                },
+                {
+                  title: "Contact Desk",
+                  text: "Route general buyer, seller, and rental leads.",
+                  href: "/template-preview/luxury-agency/contact",
+                  icon: Mail,
+                },
+              ].map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="card-hover rounded-[var(--radius-card)] border border-light-border bg-surface-container-lowest p-5 shadow-low"
+                  >
+                    <span className="flex size-11 items-center justify-center rounded-full bg-primary text-on-primary">
+                      <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    <h3 className="mt-4 text-lg font-semibold text-on-surface">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-on-surface-variant">
+                      {item.text}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                      Open form
+                      <ArrowRight className="size-4" aria-hidden="true" />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="rent" className="px-4 py-6">
         <div className="container-nexora overflow-hidden rounded-[var(--radius-panel)] bg-charcoal p-8 text-inverse-on-surface shadow-luxury md:p-12">
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
@@ -271,7 +334,7 @@ export default function LuxuryAgencyTemplatePage() {
               </p>
             </div>
             <Button asChild variant="accent" size="lg">
-              <Link href="/template-preview/luxury-agency#contact">
+              <Link href="/template-preview/luxury-agency/schedule-viewing">
                 Start Consultation
                 <Home aria-hidden="true" />
               </Link>

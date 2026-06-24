@@ -66,7 +66,9 @@ export default function CareersPage() {
                   </p>
                 </div>
                 <Button asChild variant="outline">
-                  <Link href="/template-preview/luxury-agency#contact">Apply Now</Link>
+                  <Link href="/template-preview/luxury-agency/contact">
+                    Apply Now
+                  </Link>
                 </Button>
               </article>
             ))}

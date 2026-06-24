@@ -34,7 +34,7 @@ export function CompanyCta({
               </Link>
             </Button>
             <Button asChild variant="luxury" size="lg">
-              <Link href="/template-preview/luxury-agency#contact">
+              <Link href="/template-preview/luxury-agency/contact">
                 <Phone aria-hidden="true" />
                 Contact Team
               </Link>

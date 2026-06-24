@@ -1,9 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Send } from "lucide-react";
+import type { FormEvent } from "react";
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import type { PropertyDetail } from "@/lib/real-estate-template";
+import {
+  FormNotice,
+  TextareaInput,
+  TextInput,
+  validateEmail,
+  validatePhone,
+  validateRequired,
+} from "@/components/real-estate/leads/LeadFormControls";
 import { DetailSectionTitle } from "./PropertyKeyFeatures";
 
 interface PropertyInquiryFormProps {
@@ -17,6 +26,8 @@ interface InquiryState {
   message: string;
 }
 
+type InquiryErrors = Partial<Record<keyof InquiryState, string>>;
+
 const initialState: InquiryState = {
   name: "",
   email: "",
@@ -29,10 +40,36 @@ export function PropertyInquiryForm({ property }: PropertyInquiryFormProps) {
     ...initialState,
     message: `I am interested in ${property.title} (${property.id.toUpperCase()}). Please share viewing availability and next steps.`,
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<InquiryErrors>({});
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   function updateField(field: keyof InquiryState, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
+    setErrors((current) => ({ ...current, [field]: undefined }));
+    setStatus("idle");
+  }
+
+  function submitInquiry(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const nextErrors: InquiryErrors = {
+      name: validateRequired(form.name, "Full name"),
+      email: validateEmail(form.email),
+      phone: validatePhone(form.phone),
+      message: validateRequired(form.message, "Message"),
+    };
+
+    setErrors(
+      Object.fromEntries(
+        Object.entries(nextErrors).filter(([, value]) => Boolean(value))
+      ) as InquiryErrors
+    );
+
+    if (Object.values(nextErrors).some(Boolean)) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("success");
   }
 
   return (
@@ -46,61 +83,63 @@ export function PropertyInquiryForm({ property }: PropertyInquiryFormProps) {
         id="inquiry-form-heading"
       />
 
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          setSubmitted(true);
-        }}
-      >
+      <form noValidate onSubmit={submitInquiry}>
         <div className="space-y-4">
-          <Field
+          <TextInput
             label="Full Name"
             id={`inquiry-name-${property.id}`}
             value={form.name}
             onChange={(value) => updateField("name", value)}
             placeholder="Your full name"
+            error={errors.name}
+            required
           />
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field
+            <TextInput
               label="Email"
               id={`inquiry-email-${property.id}`}
               type="email"
               value={form.email}
               onChange={(value) => updateField("email", value)}
               placeholder="you@example.com"
+              error={errors.email}
+              required
             />
-            <Field
+            <TextInput
               label="Phone"
               id={`inquiry-phone-${property.id}`}
               type="tel"
               value={form.phone}
               onChange={(value) => updateField("phone", value)}
               placeholder="+977 98..."
+              error={errors.phone}
+              required
             />
           </div>
-          <div>
-            <label
-              htmlFor={`inquiry-message-${property.id}`}
-              className="mb-1.5 block text-sm font-semibold text-on-surface"
-            >
-              Message
-            </label>
-            <textarea
-              id={`inquiry-message-${property.id}`}
-              rows={4}
-              value={form.message}
-              onChange={(event) => updateField("message", event.target.value)}
-              className="w-full resize-none rounded-[var(--radius-button)] border border-light-border bg-warm-white px-3 py-3 text-sm text-on-surface outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20"
-            />
-          </div>
+          <TextareaInput
+            label="Message"
+            id={`inquiry-message-${property.id}`}
+            rows={4}
+            value={form.message}
+            onChange={(value) => updateField("message", value)}
+            placeholder="Share viewing preferences or questions."
+            error={errors.message}
+            required
+          />
         </div>
 
-        {submitted && (
-          <p className="mt-4 flex items-center gap-2 rounded-xl bg-primary/10 px-4 py-3 text-sm font-medium text-primary">
-            <CheckCircle2 className="size-4 shrink-0" aria-hidden="true" />
+        {status === "success" && (
+          <FormNotice type="success" title="Inquiry received">
             Inquiry received for {property.title}. Connect this form to your CRM
             or email backend in production.
-          </p>
+          </FormNotice>
+        )}
+
+        {status === "error" && (
+          <FormNotice type="error" title="Check required fields">
+            Some information is missing or invalid. Review the highlighted
+            fields and submit again.
+          </FormNotice>
         )}
 
         <Button type="submit" variant="accent" size="lg" className="mt-5 w-full">
@@ -109,40 +148,5 @@ export function PropertyInquiryForm({ property }: PropertyInquiryFormProps) {
         </Button>
       </form>
     </section>
-  );
-}
-
-function Field({
-  label,
-  id,
-  value,
-  onChange,
-  placeholder,
-  type = "text",
-}: {
-  label: string;
-  id: string;
-  value: string;
-  onChange: (value: string) => void;
-  placeholder: string;
-  type?: string;
-}) {
-  return (
-    <div>
-      <label
-        htmlFor={id}
-        className="mb-1.5 block text-sm font-semibold text-on-surface"
-      >
-        {label}
-      </label>
-      <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={placeholder}
-        className="h-11 w-full rounded-[var(--radius-button)] border border-light-border bg-warm-white px-3 text-sm text-on-surface outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20"
-      />
-    </div>
   );
 }

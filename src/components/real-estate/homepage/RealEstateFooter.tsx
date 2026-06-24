@@ -59,6 +59,14 @@ export function RealEstateFooter() {
                   Agents
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/contact"
+                  className="hover:text-accent"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -115,10 +123,25 @@ export function RealEstateFooter() {
               Services
             </h3>
             <ul className="mt-5 space-y-3 text-sm text-inverse-on-surface/72">
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/schedule-viewing"
+                  className="hover:text-accent"
+                >
+                  Schedule Viewing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/valuation"
+                  className="hover:text-accent"
+                >
+                  Home Valuation
+                </Link>
+              </li>
               <li>Buyer Advisory</li>
               <li>Seller Representation</li>
               <li>Developer Sales</li>
-              <li>Investment Consulting</li>
             </ul>
           </div>
 
