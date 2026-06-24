@@ -55,6 +55,13 @@ export interface WhyChoosePoint {
   description: string;
 }
 
+export interface ListingProperty extends Property {
+  address: string;
+  city: string;
+  priceValue: number;
+  listedAt: string;
+}
+
 export const templateProperties: Property[] = [
   {
     id: "p-001",
@@ -97,6 +104,224 @@ export const templateProperties: Property[] = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
   },
 ];
+
+export const listingProperties: ListingProperty[] = [
+  {
+    id: "lp-001",
+    title: "Glasshouse Residence",
+    location: "Lazimpat, Kathmandu",
+    address: "Lazimpat Road, Kathmandu",
+    city: "Kathmandu",
+    price: "NPR 8.4 Cr",
+    priceValue: 84000000,
+    status: "For Sale",
+    type: "Villa",
+    beds: 5,
+    baths: 6,
+    area: "6,200 sq.ft",
+    listedAt: "2026-06-20",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+  },
+  {
+    id: "lp-002",
+    title: "Skyline Penthouse",
+    location: "Jhamsikhel, Lalitpur",
+    address: "Jhamsikhel Heights, Lalitpur",
+    city: "Lalitpur",
+    price: "NPR 3.2 L/mo",
+    priceValue: 320000,
+    status: "For Rent",
+    type: "Apartment",
+    beds: 4,
+    baths: 4,
+    area: "3,450 sq.ft",
+    listedAt: "2026-06-18",
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-003",
+    title: "Courtyard Family Estate",
+    location: "Budhanilkantha, Kathmandu",
+    address: "Golfutar Marg, Budhanilkantha",
+    city: "Kathmandu",
+    price: "NPR 6.1 Cr",
+    priceValue: 61000000,
+    status: "For Sale",
+    type: "House",
+    beds: 6,
+    baths: 5,
+    area: "8 anna",
+    listedAt: "2026-06-15",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-004",
+    title: "Heritage Lane Apartment",
+    location: "Bakhundole, Lalitpur",
+    address: "Bakhundole Main Road, Lalitpur",
+    city: "Lalitpur",
+    price: "NPR 2.9 Cr",
+    priceValue: 29000000,
+    status: "For Sale",
+    type: "Apartment",
+    beds: 3,
+    baths: 3,
+    area: "1,850 sq.ft",
+    listedAt: "2026-06-11",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-005",
+    title: "Embassy District Office",
+    location: "Maharajgunj, Kathmandu",
+    address: "Maharajgunj Ring Road, Kathmandu",
+    city: "Kathmandu",
+    price: "NPR 5.5 L/mo",
+    priceValue: 550000,
+    status: "For Rent",
+    type: "Commercial",
+    beds: 0,
+    baths: 4,
+    area: "5,100 sq.ft",
+    listedAt: "2026-06-09",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-006",
+    title: "Riverside Villa",
+    location: "Bhaisepati, Lalitpur",
+    address: "Bhaisepati Residential Area, Lalitpur",
+    city: "Lalitpur",
+    price: "NPR 7.6 Cr",
+    priceValue: 76000000,
+    status: "For Sale",
+    type: "Villa",
+    beds: 5,
+    baths: 5,
+    area: "5,700 sq.ft",
+    listedAt: "2026-06-07",
+    image:
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-007",
+    title: "Premium Plot Parcel",
+    location: "Dhapasi, Kathmandu",
+    address: "Dhapasi Planning, Kathmandu",
+    city: "Kathmandu",
+    price: "NPR 4.8 Cr",
+    priceValue: 48000000,
+    status: "For Sale",
+    type: "Land",
+    beds: 0,
+    baths: 0,
+    area: "10 anna",
+    listedAt: "2026-06-05",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-008",
+    title: "Garden Duplex",
+    location: "Sanepa, Lalitpur",
+    address: "Sanepa Heights, Lalitpur",
+    city: "Lalitpur",
+    price: "NPR 2.4 L/mo",
+    priceValue: 240000,
+    status: "For Rent",
+    type: "House",
+    beds: 4,
+    baths: 4,
+    area: "3,000 sq.ft",
+    listedAt: "2026-06-02",
+    image:
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-009",
+    title: "Boutique Retail Front",
+    location: "Durbar Marg, Kathmandu",
+    address: "Durbar Marg, Kathmandu",
+    city: "Kathmandu",
+    price: "NPR 3.8 L/mo",
+    priceValue: 380000,
+    status: "For Rent",
+    type: "Commercial",
+    beds: 0,
+    baths: 2,
+    area: "2,250 sq.ft",
+    listedAt: "2026-05-30",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-010",
+    title: "Quiet Ridge Apartment",
+    location: "Hattiban, Lalitpur",
+    address: "Hattiban Residential Lane, Lalitpur",
+    city: "Lalitpur",
+    price: "NPR 1.85 Cr",
+    priceValue: 18500000,
+    status: "For Sale",
+    type: "Apartment",
+    beds: 2,
+    baths: 2,
+    area: "1,240 sq.ft",
+    listedAt: "2026-05-27",
+    image:
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-011",
+    title: "Hill View Villa",
+    location: "Nagarkot, Bhaktapur",
+    address: "Nagarkot Resort Road, Bhaktapur",
+    city: "Bhaktapur",
+    price: "NPR 5.9 Cr",
+    priceValue: 59000000,
+    status: "For Sale",
+    type: "Villa",
+    beds: 4,
+    baths: 5,
+    area: "12 ropani",
+    listedAt: "2026-05-22",
+    image:
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "lp-012",
+    title: "Central Business Floor",
+    location: "New Baneshwor, Kathmandu",
+    address: "New Baneshwor, Kathmandu",
+    city: "Kathmandu",
+    price: "NPR 6.8 Cr",
+    priceValue: 68000000,
+    status: "For Sale",
+    type: "Commercial",
+    beds: 0,
+    baths: 6,
+    area: "7,400 sq.ft",
+    listedAt: "2026-05-19",
+    image:
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+  },
+];
+
+export const listingLocations = ["All", "Kathmandu", "Lalitpur", "Bhaktapur"] as const;
+export const listingPropertyTypes = [
+  "All",
+  "Apartment",
+  "Villa",
+  "House",
+  "Commercial",
+  "Land",
+] as const;
 
 export const templateAgents: Agent[] = [
   {

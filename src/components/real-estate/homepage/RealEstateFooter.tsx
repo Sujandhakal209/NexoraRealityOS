@@ -7,7 +7,10 @@ export function RealEstateFooter() {
       <div className="container-nexora py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Link href="#" className="flex items-center gap-3">
+            <Link
+              href="/template-preview/luxury-agency"
+              className="flex items-center gap-3"
+            >
               <span className="flex size-10 items-center justify-center rounded-full bg-accent text-accent-foreground">
                 <Building2 className="size-5" aria-hidden="true" />
               </span>
@@ -24,13 +27,38 @@ export function RealEstateFooter() {
               Explore
             </h3>
             <ul className="mt-5 space-y-3 text-sm text-inverse-on-surface/72">
-              {["Buy", "Rent", "Properties", "Agents"].map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} className="hover:text-accent">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/properties"
+                  className="hover:text-accent"
+                >
+                  Buy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/properties"
+                  className="hover:text-accent"
+                >
+                  Rent
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency/properties"
+                  className="hover:text-accent"
+                >
+                  Properties
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/template-preview/luxury-agency#agents"
+                  className="hover:text-accent"
+                >
+                  Agents
+                </Link>
+              </li>
             </ul>
           </div>
 

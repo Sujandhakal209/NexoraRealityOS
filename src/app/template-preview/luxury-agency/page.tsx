@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
@@ -61,10 +62,10 @@ export default function LuxuryAgencyTemplatePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="accent" size="lg">
-                <a href="#properties">
+                <Link href="/template-preview/luxury-agency/properties">
                   Explore Listings
                   <ArrowRight aria-hidden="true" />
-                </a>
+                </Link>
               </Button>
               <Button asChild variant="luxury" size="lg">
                 <a href="#agents">Meet Advisors</a>
@@ -107,6 +108,14 @@ export default function LuxuryAgencyTemplatePage() {
             {templateProperties.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link href="/template-preview/luxury-agency/properties">
+                View All Properties
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -229,10 +238,10 @@ export default function LuxuryAgencyTemplatePage() {
               </p>
             </div>
             <Button asChild variant="accent" size="lg">
-              <a href="#contact">
+              <Link href="/template-preview/luxury-agency#contact">
                 Start Consultation
                 <Home aria-hidden="true" />
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

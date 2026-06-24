@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Buy", href: "#buy" },
-  { label: "Rent", href: "#rent" },
-  { label: "Properties", href: "#properties" },
-  { label: "Agents", href: "#agents" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Buy", href: "/template-preview/luxury-agency/properties" },
+  { label: "Rent", href: "/template-preview/luxury-agency/properties" },
+  { label: "Properties", href: "/template-preview/luxury-agency/properties" },
+  { label: "Agents", href: "/template-preview/luxury-agency#agents" },
+  { label: "About", href: "/template-preview/luxury-agency#about" },
+  { label: "Contact", href: "/template-preview/luxury-agency#contact" },
 ];
 
 export function RealEstateNavbar() {
@@ -21,7 +21,11 @@ export function RealEstateNavbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-charcoal/95 text-inverse-on-surface backdrop-blur-md">
       <nav className="container-nexora flex h-16 items-center justify-between md:h-20">
-        <Link href="#" className="flex items-center gap-3" aria-label="Aurelia Estates home">
+        <Link
+          href="/template-preview/luxury-agency"
+          className="flex items-center gap-3"
+          aria-label="Aurelia Estates home"
+        >
           <span className="flex size-10 items-center justify-center rounded-full bg-accent text-accent-foreground">
             <Building2 className="size-5" aria-hidden="true" />
           </span>
@@ -37,20 +41,22 @@ export function RealEstateNavbar() {
 
         <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
+            <li key={link.label}>
+              <Link
                 href={link.href}
                 className="text-sm font-semibold text-inverse-on-surface/75 transition hover:text-accent"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="hidden lg:block">
           <Button asChild variant="accent" size="sm">
-            <a href="#contact">Schedule Viewing</a>
+            <Link href="/template-preview/luxury-agency#contact">
+              Schedule Viewing
+            </Link>
           </Button>
         </div>
 
@@ -74,21 +80,24 @@ export function RealEstateNavbar() {
         <div className="container-nexora py-4">
           <ul className="space-y-1">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                href={link.href}
+              <li key={link.label}>
+                <Link
+                  href={link.href}
                   className="block rounded-xl px-3 py-3 text-sm font-semibold text-inverse-on-surface/80 hover:bg-white/10"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
           <Button asChild variant="accent" className="mt-3 w-full">
-            <a href="#contact" onClick={() => setOpen(false)}>
+            <Link
+              href="/template-preview/luxury-agency#contact"
+              onClick={() => setOpen(false)}
+            >
               Schedule Viewing
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
