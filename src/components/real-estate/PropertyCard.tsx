@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import type { Property } from "@/lib/real-estate-template";
+import { getPropertyDetailPath, type Property } from "@/lib/real-estate-template";
 import { cn } from "@/lib/utils";
 
 interface PropertyCardProps {
@@ -65,8 +66,8 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           </span>
         </div>
 
-        <Button variant="outline" className="mt-5 w-full">
-          View Details
+        <Button asChild variant="outline" className="mt-5 w-full">
+          <Link href={getPropertyDetailPath(property)}>View Details</Link>
         </Button>
       </div>
     </article>

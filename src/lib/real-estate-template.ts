@@ -441,6 +441,29 @@ export const propertyCategories: PropertyCategory[] = [
   },
 ];
 
+export function slugifyPropertyTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getPropertySlug(property: Pick<Property, "id" | "title">): string {
+  return slugifyPropertyTitle(property.title);
+}
+
+export function getPropertyDetailPath(property: Pick<Property, "id" | "title">): string {
+  return `/template-preview/luxury-agency/properties/${getPropertySlug(property)}`;
+}
+
+export {
+  buildPropertyDetail,
+  type FloorPlan,
+  type KeyFeature,
+  type PropertyDetail,
+  type PropertyDetailExtras,
+} from "./property-detail-data";
+
 export const whyChoosePoints: WhyChoosePoint[] = [
   {
     id: "advisory",
