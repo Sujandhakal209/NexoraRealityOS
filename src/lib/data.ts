@@ -1,8 +1,10 @@
+import templateImage from "@/templateImage.png";
+
 export const SITE = {
   name: "Nexora RealtyOS",
   tagline: "Listings Dekhi Leads Samma, Leads Dekhi Deals Samma",
   phone: "+977 9863594575",
-  email: "hello@nexora.np",
+  email: "nexorarealtyos@gmail.com",
   location: "Kathmandu, Nepal",
 } as const;
 
@@ -89,67 +91,68 @@ export const TEMPLATES = [
       "Lead capture on every listing",
     ],
     gradient: "from-[#e9f6fd] to-[#c6e8d2]",
+    image: templateImage,
   },
-  {
-    id: "broker",
-    name: "Broker Website",
-    bestFor: "Individual brokers building a personal brand",
-    category: "Broker",
-    features: [
-      "Personal brand showcase",
-      "Featured property highlights",
-      "Direct WhatsApp and call buttons",
-    ],
-    gradient: "from-[#faf7f0] to-[#f3ede3]",
-  },
-  {
-    id: "land-developer",
-    name: "Land Developer",
-    bestFor: "Land plotting and development projects",
-    category: "Land Developer",
-    features: [
-      "Interactive plot map layout",
-      "Project phase tracking",
-      "Site visit booking forms",
-    ],
-    gradient: "from-[#e3f0f8] to-[#ddeaf2]",
-  },
-  {
-    id: "housing",
-    name: "Housing Project",
-    bestFor: "Apartments and premium housing developments",
-    category: "Housing Project",
-    features: [
-      "Unit type showcase",
-      "High-conversion booking forms",
-      "Project gallery and amenities",
-    ],
-    gradient: "from-[#f3ede3] to-[#c6e8d2]",
-  },
-  {
-    id: "rental",
-    name: "Rental Business",
-    bestFor: "Rental property managers and landlords",
-    category: "Rental",
-    features: [
-      "Rental listing filters",
-      "Availability status display",
-      "Tenant inquiry forms",
-    ],
-    gradient: "from-[#e9f6fd] to-[#faf7f0]",
-  },
-  {
-    id: "premium-developer",
-    name: "Premium Developer Landing Page",
-    bestFor: "Large developers with flagship projects",
-    category: "Land Developer",
-    features: [
-      "Premium hero with video support",
-      "Master plan visualization",
-      "Priority lead routing",
-    ],
-    gradient: "from-[#ddeaf2] to-[#496b5a]/20",
-  },
+  // {
+  //   id: "broker",
+  //   name: "Broker Website",
+  //   bestFor: "Individual brokers building a personal brand",
+  //   category: "Broker",
+  //   features: [
+  //     "Personal brand showcase",
+  //     "Featured property highlights",
+  //     "Direct WhatsApp and call buttons",
+  //   ],
+  //   gradient: "from-[#faf7f0] to-[#f3ede3]",
+  // },
+  // {
+  //   id: "land-developer",
+  //   name: "Land Developer",
+  //   bestFor: "Land plotting and development projects",
+  //   category: "Land Developer",
+  //   features: [
+  //     "Interactive plot map layout",
+  //     "Project phase tracking",
+  //     "Site visit booking forms",
+  //   ],
+  //   gradient: "from-[#e3f0f8] to-[#ddeaf2]",
+  // },
+  // {
+  //   id: "housing",
+  //   name: "Housing Project",
+  //   bestFor: "Apartments and premium housing developments",
+  //   category: "Housing Project",
+  //   features: [
+  //     "Unit type showcase",
+  //     "High-conversion booking forms",
+  //     "Project gallery and amenities",
+  //   ],
+  //   gradient: "from-[#f3ede3] to-[#c6e8d2]",
+  // },
+  // {
+  //   id: "rental",
+  //   name: "Rental Business",
+  //   bestFor: "Rental property managers and landlords",
+  //   category: "Rental",
+  //   features: [
+  //     "Rental listing filters",
+  //     "Availability status display",
+  //     "Tenant inquiry forms",
+  //   ],
+  //   gradient: "from-[#e9f6fd] to-[#faf7f0]",
+  // },
+  // {
+  //   id: "premium-developer",
+  //   name: "Premium Developer Landing Page",
+  //   bestFor: "Large developers with flagship projects",
+  //   category: "Land Developer",
+  //   features: [
+  //     "Premium hero with video support",
+  //     "Master plan visualization",
+  //     "Priority lead routing",
+  //   ],
+  //   gradient: "from-[#ddeaf2] to-[#496b5a]/20",
+  // },
 ] as const;
 
 export const FEATURES = [
@@ -222,7 +225,7 @@ export const FEATURES = [
   {
     title: "Lead Source Tracking",
     description:
-      "Know exactly where each lead came from — Facebook, WhatsApp, or website.",
+      "Know exactly where each lead came from  Facebook, WhatsApp, or website.",
     icon: "tracking",
   },
   {
@@ -339,7 +342,7 @@ export const PRICING_PLANS = [
     id: "pro",
     name: "Pro",
     setupCharge: "NPR 40,000",
-    monthlyCharge: "NPR 6,000/month",
+    monthlyCharge: "NPR 8,000/month",
     popular: false,
     bestFor:
       "Serious agencies and developers that want full promotion, CRM, custom branding, and video-based marketing.",
@@ -415,10 +418,10 @@ export const TEMPLATE_FILTERS = [
 ] as const;
 
 export const DEMO_PLANS = [
-  "Basic — Individual Agents",
-  "Plus — Growing Agencies",
-  "Pro — Full Growth System",
-  "Custom — Developers / Housing Projects",
+  "Basic  Individual Agents",
+  "Plus  Growing Agencies",
+  "Pro  Full Growth System",
+  "Custom  Developers / Housing Projects",
 ] as const;
 
 export const CONTACT_METHODS = ["Phone", "WhatsApp", "Viber", "Email"] as const;

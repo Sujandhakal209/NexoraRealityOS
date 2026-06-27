@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import templateImage from "@/templateImage.png";
 
 interface TemplateCardProps {
   name: string;
@@ -7,6 +9,7 @@ interface TemplateCardProps {
   features?: readonly string[];
   gradient: string;
   showPreview?: boolean;
+  image?: typeof templateImage;
 }
 
 /**
@@ -82,10 +85,22 @@ export function TemplateCard({
   features,
   gradient,
   showPreview = false,
+  image,
 }: TemplateCardProps) {
   return (
     <article className="card-hover overflow-hidden rounded-xl border border-light-border bg-surface-container-lowest shadow-low">
-      <TemplateMockup gradient={gradient} />
+      {image ? (
+        <div className="relative w-full bg-gray-200 rounded-t-xl flex items-center justify-center">
+          <Image
+            src={image}
+            alt={name}
+            className="w-full h-auto object-contain"
+            priority
+          />
+        </div>
+      ) : (
+        <TemplateMockup gradient={gradient} />
+      )}
       <div className="p-5 md:p-6">
         <h3 className="text-lg font-semibold text-on-surface">{name}</h3>
         <p className="body-sm mt-2 text-on-surface-variant">
