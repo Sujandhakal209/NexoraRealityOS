@@ -74,7 +74,7 @@ export function StepCard({
 }
 
 /**
- * FlowIcon — same props (icon, label) as before.
+ * FlowIcon  same props (icon, label) as before.
  * `index` and `total` are optional additions so the parent page can pass
  * the step's position in the sequence; when omitted, the component falls
  * back to its original flat styling so nothing breaks if unused.

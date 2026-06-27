@@ -26,7 +26,7 @@ export function PropertyImageGallery({ property }: PropertyImageGalleryProps) {
             className="aspect-[16/9] bg-cover bg-center transition duration-700 md:aspect-[21/9]"
             style={{ backgroundImage: `url(${images[activeIndex]})` }}
             role="img"
-            aria-label={`${property.title} — photo ${activeIndex + 1} of ${images.length}`}
+            aria-label={`${property.title}  photo ${activeIndex + 1} of ${images.length}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent" />
 
@@ -123,7 +123,7 @@ export function PropertyImageGallery({ property }: PropertyImageGalleryProps) {
               aspectRatio: "16/9",
             }}
             role="img"
-            aria-label={`${property.title} — photo ${activeIndex + 1}`}
+            aria-label={`${property.title}  photo ${activeIndex + 1}`}
           />
 
           <button

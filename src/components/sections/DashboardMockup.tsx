@@ -36,9 +36,9 @@ export function DashboardMockup() {
 
         <div className="space-y-2">
           {[
-            { title: "3 BHK Apartment — Lazimpat", price: "NPR 2.5 Cr" },
-            { title: "Land Plot — Bhaktapur", price: "NPR 45 Lakh" },
-            { title: "Premium Villa — Budhanilkantha", price: "NPR 4.2 Cr" },
+            { title: "3 BHK Apartment  Lazimpat", price: "NPR 2.5 Cr" },
+            { title: "Land Plot  Bhaktapur", price: "NPR 45 Lakh" },
+            { title: "Premium Villa  Budhanilkantha", price: "NPR 4.2 Cr" },
           ].map((property) => (
             <div
               key={property.title}

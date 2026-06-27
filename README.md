@@ -1,14 +1,14 @@
-# Nexora RealtyOS — Public Marketing Website
+# Nexora RealtyOS  Public Marketing Website
 
 Public-facing marketing site for **Nexora RealtyOS**, a real-estate business operating system for agencies in Nepal.
 
 ## Pages
 
-- `/` — Landing page with all marketing sections
-- `/book-demo` — Demo request form
-- `/templates` — Template gallery with filters
-- `/pricing` — Pricing plans and comparison table
-- `/contact` — Contact form and details
+- `/`  Landing page with all marketing sections
+- `/book-demo`  Demo request form
+- `/templates`  Template gallery with filters
+- `/pricing`  Pricing plans and comparison table
+- `/contact`  Contact form and details
 
 ## Tech Stack
 

@@ -54,7 +54,7 @@ export function PropertyMapPlaceholder({ property }: PropertyMapPlaceholderProps
 
         <div className="flex flex-col gap-4 border-t border-light-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-on-surface-variant">
-            Map integration placeholder — connect Google Maps or Mapbox in
+            Map integration placeholder  connect Google Maps or Mapbox in
             production.
           </p>
           <Button variant="outline" size="sm" className="shrink-0">
