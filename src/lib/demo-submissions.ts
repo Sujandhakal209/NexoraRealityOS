@@ -43,6 +43,18 @@ export interface DemoSubmissionInput {
   message?: string;
 }
 
+interface DemoSubmissionRow {
+  id: number;
+  full_name: string;
+  phone: string;
+  agency_name: string;
+  location: string;
+  plan: string;
+  contact_methods: string;
+  message: string | null;
+  created_at: string;
+}
+
 export function saveDemoSubmission(submission: DemoSubmissionInput) {
   const statement = getDatabase().prepare(`
     INSERT INTO demo_submissions (
@@ -86,8 +98,8 @@ export function getDemoSubmissions() {
     ORDER BY created_at DESC
   `);
 
-  return statement.all().map((row: any) => ({
+  return (statement.all() as DemoSubmissionRow[]).map((row) => ({
     ...row,
-    contact_methods: JSON.parse(row.contact_methods),
+    contact_methods: JSON.parse(row.contact_methods) as string[],
   }));
 }
