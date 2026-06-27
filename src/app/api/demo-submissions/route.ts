@@ -7,6 +7,12 @@ import {
 
 export const runtime = "nodejs";
 
+function isAuthorized(request: Request) {
+  const secret = request.headers.get("x-admin-secret");
+    
+  return secret === process.env.ADMIN_SECRET;
+}
+
 function isValidSubmission(body: unknown): body is DemoSubmissionInput {
   if (!body || typeof body !== "object") {
     return false;
@@ -58,7 +64,11 @@ export async function POST(request: Request) {
   );
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const submissions = getDemoSubmissions();
 
   return NextResponse.json(submissions);
