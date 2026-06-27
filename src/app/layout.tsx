@@ -11,7 +11,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nexora RealtyOS — Complete Real-Estate Business System",
+    default: "Nexora RealtyOS  Complete Real-Estate Business System",
     template: "%s | Nexora RealtyOS",
   },
   description:

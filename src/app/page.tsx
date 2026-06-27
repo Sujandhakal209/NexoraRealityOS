@@ -181,7 +181,7 @@ export default function HomePage() {
                 Core Message
               </p>
               <p className="headline-md mt-3 text-on-surface">
-                Website Matra Haina — Complete Real-Estate Business System
+                Website Matra Haina  Complete Real-Estate Business System
               </p>
               <p className="body-md mt-4 text-on-surface-variant">
                 Listings Dekhi Leads Samma, Leads Dekhi Deals Samma

@@ -16,7 +16,7 @@ export default function PricingPage() {
         <div className="container-nexora">
           <SectionHeader
             title="Simple, Transparent Pricing for Every Stage"
-            subtitle="From individual brokers to large housing developers — choose the plan that fits your real-estate business today."
+            subtitle="From individual brokers to large housing developers  choose the plan that fits your real-estate business today."
           />
         </div>
       </section>
