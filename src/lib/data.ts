@@ -1,3 +1,5 @@
+import templateImage from "@/templateImage.png";
+
 export const SITE = {
   name: "Nexora RealtyOS",
   tagline: "Listings Dekhi Leads Samma, Leads Dekhi Deals Samma",
@@ -89,6 +91,7 @@ export const TEMPLATES = [
       "Lead capture on every listing",
     ],
     gradient: "from-[#e9f6fd] to-[#c6e8d2]",
+    image: templateImage,
   },
   // {
   //   id: "broker",

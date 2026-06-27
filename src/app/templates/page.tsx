@@ -40,10 +40,23 @@ export default function TemplatesPage() {
             ))}
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((template) => (
-              <TemplateCard key={template.id} {...template} showPreview />
-            ))}
+          <div className="flex gap-8 items-stretch">
+            <div className="flex-shrink-0 w-full sm:w-96">
+              {filtered.map((template) => (
+                <TemplateCard key={template.id} {...template} showPreview />
+              ))}
+            </div>
+
+            <div className="hidden lg:flex flex-1 rounded-xl border border-light-border bg-gradient-to-br from-cream to-warm-white p-8 flex-col justify-center">
+              <p className="headline-lg text-on-surface">
+                Specialized Templates Coming Soon
+              </p>
+              <p className="headline-sm text-on-surface-variant mt-4">
+                Broker profiles, land developer sites, housing projects, rental 
+                management, and premium developer showcases are launching soon to 
+                serve every segment of the real estate industry.
+              </p>
+            </div>
           </div>
         </div>
       </section>

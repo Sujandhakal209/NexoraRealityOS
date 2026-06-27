@@ -24,11 +24,11 @@ export function PropertySearchForm() {
             Type
           </span>
           <select className="mt-1 w-full bg-transparent text-sm font-semibold text-on-surface outline-none">
-            <option>Any Property</option>
+            {/* <option>Any Property</option>
             <option>Apartment</option>
             <option>Villa</option>
             <option>Commercial</option>
-            <option>Land</option>
+            <option>Land</option> */}
           </select>
         </label>
 
@@ -37,10 +37,10 @@ export function PropertySearchForm() {
             Budget
           </span>
           <select className="mt-1 w-full bg-transparent text-sm font-semibold text-on-surface outline-none">
-            <option>Any Budget</option>
+            {/* <option>Any Budget</option>
             <option>NPR 1 Cr - 3 Cr</option>
             <option>NPR 3 Cr - 6 Cr</option>
-            <option>NPR 6 Cr+</option>
+            <option>NPR 6 Cr+</option> */}
           </select>
         </label>
 
