@@ -1,19 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TemplateCard } from "@/components/cards/TemplateCard";
 import { Button } from "@/components/ui/Button";
-import { TEMPLATES, TEMPLATE_FILTERS } from "@/lib/data";
+import { TEMPLATES } from "@/lib/data";
 
 export default function TemplatesPage() {
-  const [activeFilter, setActiveFilter] = useState<string>("All");
-
-  const filtered =
-    activeFilter === "All"
-      ? TEMPLATES
-      : TEMPLATES.filter((t) => t.category === activeFilter);
-
   return (
     <>
       <section className="bg-warm-white py-12 md:py-16">
@@ -23,26 +15,9 @@ export default function TemplatesPage() {
             subtitle="Start with a professional template, then customize it to match your agency's brand."
           />
 
-          <div className="mb-10 flex flex-wrap justify-center gap-2">
-            {TEMPLATE_FILTERS.map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => setActiveFilter(filter)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  activeFilter === filter
-                    ? "bg-primary text-on-primary"
-                    : "border border-light-border bg-surface-container-lowest text-on-surface-variant hover:bg-cream"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-
           <div className="flex gap-8 items-stretch">
             <div className="flex-shrink-0 w-full sm:w-96">
-              {filtered.map((template) => (
+              {TEMPLATES.map((template) => (
                 <TemplateCard key={template.id} {...template} showPreview />
               ))}
             </div>
