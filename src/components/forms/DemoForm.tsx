@@ -41,6 +41,8 @@ export function DemoForm({ className }: DemoFormProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validate = (): boolean => {
     const nextErrors: FormErrors = {};
@@ -58,13 +60,41 @@ export function DemoForm({ className }: DemoFormProps) {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setSubmitted(true);
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 5000);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/demo-submissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        const result = (await response.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(result?.error || "We could not submit your request.");
+      }
+
+      setSubmitted(true);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 5000);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "We could not submit your request. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleContactMethod = (method: string) => {
@@ -238,9 +268,12 @@ export function DemoForm({ className }: DemoFormProps) {
           </div>
         </div>
 
-        <Button type="submit" className="mt-6 w-full" size="lg">
-          Request Demo
+        <Button type="submit" className="mt-6 w-full" size="lg" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Request Demo"}
         </Button>
+        {submitError && (
+          <p className="mt-3 text-center text-sm text-error">{submitError}</p>
+        )}
         <p className="body-sm mt-4 text-center text-on-surface-variant">
           No credit card required. Our team typically responds within 2 business
           hours.
