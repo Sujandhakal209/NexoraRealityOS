@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   DemoSubmissionInput,
+  getDemoSubmissions,
   saveDemoSubmission,
 } from "@/lib/demo-submissions";
 
@@ -55,4 +56,10 @@ export async function POST(request: Request) {
     { success: true, id: result.id },
     { status: 201 }
   );
+}
+
+export async function GET() {
+  const submissions = getDemoSubmissions();
+
+  return NextResponse.json(submissions);
 }

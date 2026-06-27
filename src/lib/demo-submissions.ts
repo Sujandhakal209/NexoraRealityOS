@@ -70,3 +70,24 @@ export function saveDemoSubmission(submission: DemoSubmissionInput) {
     id: Number(result.lastInsertRowid),
   };
 }
+export function getDemoSubmissions() {
+  const statement = getDatabase().prepare(`
+    SELECT
+      id,
+      full_name,
+      phone,
+      agency_name,
+      location,
+      plan,
+      contact_methods,
+      message,
+      created_at
+    FROM demo_submissions
+    ORDER BY created_at DESC
+  `);
+
+  return statement.all().map((row: any) => ({
+    ...row,
+    contact_methods: JSON.parse(row.contact_methods),
+  }));
+}
