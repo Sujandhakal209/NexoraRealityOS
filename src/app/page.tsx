@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ProblemCard } from "@/components/cards/ProblemCard";
@@ -22,7 +21,7 @@ import {
   PROBLEMS,
   SETUP_STEPS,
   SOLUTION_FLOW,
-  TEMPLATE_PREVIEW,
+  TEMPLATES,
 } from "@/lib/data";
 
 export default function HomePage() {
@@ -128,18 +127,24 @@ export default function HomePage() {
             title="Choose Your Website Template and Go Live Fast."
             subtitle="Beautifully crafted, SEO-optimized templates designed for the Nepali real-estate market."
           />
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {TEMPLATE_PREVIEW.map((template) => (
-              <TemplateCard key={template.id} {...template} />
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link
-              href="/templates"
-              className="body-md font-semibold text-deep-sage hover:underline"
-            >
-              View All Templates →
-            </Link>
+
+          <div className="flex gap-8 items-stretch">
+            <div className="flex-shrink-0 w-full sm:w-96">
+              {TEMPLATES.map((template) => (
+                <TemplateCard key={template.id} {...template} showPreview />
+              ))}
+            </div>
+
+            <div className="hidden lg:flex flex-1 rounded-xl border border-light-border bg-gradient-to-br from-cream to-warm-white p-8 flex-col justify-center">
+              <p className="headline-lg text-on-surface">
+                Specialized Templates Coming Soon
+              </p>
+              <p className="headline-sm text-on-surface-variant mt-4">
+                Broker profiles, land developer sites, housing projects, rental 
+                management, and premium developer showcases are launching soon to 
+                serve every segment of the real estate industry.
+              </p>
+            </div>
           </div>
         </div>
       </section>
