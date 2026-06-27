@@ -73,7 +73,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-light-border pt-6 text-center body-sm text-on-surface-variant">
-          © 2024 Nexora RealtyOS. All rights reserved.
+          © 2026 Nexora RealtyOS. All rights reserved.
         </div>
       </div>
     </footer>

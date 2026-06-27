@@ -4,7 +4,7 @@ export const SITE = {
   name: "Nexora RealtyOS",
   tagline: "Listings Dekhi Leads Samma, Leads Dekhi Deals Samma",
   phone: "+977 9863594575",
-  email: "hello@nexora.np",
+  email: "nexorarealtyos@gmail.com",
   location: "Kathmandu, Nepal",
 } as const;
 
@@ -342,7 +342,7 @@ export const PRICING_PLANS = [
     id: "pro",
     name: "Pro",
     setupCharge: "NPR 40,000",
-    monthlyCharge: "NPR 6,000/month",
+    monthlyCharge: "NPR 8,000/month",
     popular: false,
     bestFor:
       "Serious agencies and developers that want full promotion, CRM, custom branding, and video-based marketing.",
