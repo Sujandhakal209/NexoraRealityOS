@@ -1,112 +1,122 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ValidationError, useForm } from "@formspree/react";
 import { Button } from "@/components/ui/Button";
-import { CONTACT_METHODS, DEMO_PLANS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-interface FormData {
+const TEAM_SIZE_OPTIONS = [
+  "1-10 employees",
+  "11-50 employees",
+  "51-200 employees",
+  "201-500 employees",
+  "500+ employees",
+] as const;
+
+const DEMO_GOAL_OPTIONS = [
+  "Improve lead capture",
+  "Speed up sales follow-up",
+  "Automate onboarding",
+  "Centralize reporting",
+  "Evaluate platform fit",
+] as const;
+
+interface DemoFormData {
   fullName: string;
+  workEmail: string;
+  companyName: string;
+  jobTitle: string;
+  companySize: string;
   phone: string;
-  agencyName: string;
-  location: string;
-  plan: string;
-  contactMethods: string[];
+  demoGoal: string;
   message: string;
 }
 
-interface FormErrors {
+interface DemoFormErrors {
   fullName?: string;
-  phone?: string;
-  agencyName?: string;
-  location?: string;
-  plan?: string;
-  contactMethods?: string;
+  workEmail?: string;
+  companyName?: string;
+  jobTitle?: string;
+  companySize?: string;
+  demoGoal?: string;
 }
 
 interface DemoFormProps {
   className?: string;
+  formId?: string;
 }
 
-export function DemoForm({ className }: DemoFormProps) {
-  const [form, setForm] = useState<FormData>({
-    fullName: "",
-    phone: "",
-    agencyName: "",
-    location: "",
-    plan: "",
-    contactMethods: [],
-    message: "",
-  });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+const INITIAL_FORM: DemoFormData = {
+  fullName: "",
+  workEmail: "",
+  companyName: "",
+  jobTitle: "",
+  companySize: "",
+  phone: "",
+  demoGoal: "",
+  message: "",
+};
 
-  const validate = (): boolean => {
-    const nextErrors: FormErrors = {};
+export function DemoForm({ className, formId }: DemoFormProps) {
+  const [form, setForm] = useState(INITIAL_FORM);
+  const [errors, setErrors] = useState<DemoFormErrors>({});
+  const resolvedFormId =
+    formId?.trim() ||
+    process.env.NEXT_PUBLIC_FORMSPREE_DEMO_FORM_ID ||
+    "mojgqnnb";
+  const [state, handleSubmit] = useForm(resolvedFormId);
 
-    if (!form.fullName.trim()) nextErrors.fullName = "Full name is required";
-    if (!form.phone.trim()) nextErrors.phone = "Phone number is required";
-    if (!form.agencyName.trim())
-      nextErrors.agencyName = "Agency name is required";
-    if (!form.location.trim()) nextErrors.location = "Location is required";
-    if (!form.plan) nextErrors.plan = "Please select a plan";
-    if (form.contactMethods.length === 0)
-      nextErrors.contactMethods = "Select at least one contact method";
+  useEffect(() => {
+    if (state.succeeded) {
+      setErrors({});
+      setForm(INITIAL_FORM);
+    }
+  }, [state.succeeded]);
+
+  const validate = () => {
+    const nextErrors: DemoFormErrors = {};
+
+    if (!form.fullName.trim()) {
+      nextErrors.fullName = "Full name is required.";
+    }
+
+    if (!form.workEmail.trim()) {
+      nextErrors.workEmail = "Work email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.workEmail.trim())) {
+      nextErrors.workEmail = "Enter a valid work email address.";
+    }
+
+    if (!form.companyName.trim()) {
+      nextErrors.companyName = "Company name is required.";
+    }
+
+    if (!form.jobTitle.trim()) {
+      nextErrors.jobTitle = "Job title is required.";
+    }
+
+    if (!form.companySize) {
+      nextErrors.companySize = "Please select a company size.";
+    }
+
+    if (!form.demoGoal) {
+      nextErrors.demoGoal = "Please choose what you want to see in the demo.";
+    }
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    try {
-      const response = await fetch("/api/demo-submissions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      if (!response.ok) {
-        const result = (await response.json().catch(() => null)) as
-          | { error?: string }
-          | null;
-        throw new Error(result?.error || "We could not submit your request.");
-      }
-
-      setSubmitted(true);
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 5000);
-    } catch (error) {
-      setSubmitError(
-        error instanceof Error
-          ? error.message
-          : "We could not submit your request. Please try again."
-      );
-    } finally {
-      setIsSubmitting(false);
+    if (!validate()) {
+      return;
     }
+
+    await handleSubmit(event);
   };
 
-  const toggleContactMethod = (method: string) => {
-    setForm((prev) => ({
-      ...prev,
-      contactMethods: prev.contactMethods.includes(method)
-        ? prev.contactMethods.filter((m) => m !== method)
-        : [...prev.contactMethods, method],
-    }));
-  };
-
-  if (submitted) {
+  if (state.succeeded) {
     return (
       <div
         className={cn(
@@ -117,183 +127,185 @@ export function DemoForm({ className }: DemoFormProps) {
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-secondary-container text-2xl text-deep-sage">
           ✓
         </div>
-        <h2 className="headline-md text-on-surface">Thank You!</h2>
+        <h2 className="headline-md text-on-surface">Demo request received</h2>
         <p className="body-md mt-3 text-on-surface-variant">
-          Demo request submitted successfully. Our team will contact you soon.
+          Thanks for your interest. We&apos;ll reach out shortly to schedule your
+          personalized walkthrough.
         </p>
-        <Button
-          className="mt-6"
-          variant="outline"
-          onClick={() => {
-            setSubmitted(false);
-            setForm({
-              fullName: "",
-              phone: "",
-              agencyName: "",
-              location: "",
-              plan: "",
-              contactMethods: [],
-              message: "",
-            });
-          }}
-        >
-          Submit Another Request
-        </Button>
       </div>
     );
   }
 
   return (
-    <>
-      {showToast && (
-        <div
-          role="status"
-          className="animate-fade-in-up fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl bg-primary px-6 py-3 text-sm font-medium text-on-primary shadow-high"
-        >
-          Demo request submitted successfully. Our team will contact you soon.
-        </div>
+    <form
+      onSubmit={onSubmit}
+      className={cn(
+        "rounded-2xl border border-light-border bg-surface-container-lowest p-6 shadow-high md:p-8",
+        className
       )}
+      noValidate
+    >
+      <input type="hidden" name="formName" value="Book a Demo" />
+      <input type="hidden" name="source" value="B2B SaaS landing page" />
 
-      <form
-        onSubmit={handleSubmit}
-        className={cn(
-          "rounded-2xl border border-light-border bg-surface-container-lowest p-6 shadow-high md:p-8",
-          className
-        )}
-        noValidate
+      <h2 className="headline-md text-on-surface">Book a Demo</h2>
+      <p className="body-md mt-2 text-on-surface-variant">
+        Tell us a bit about your team and we&apos;ll tailor the walkthrough to your
+        sales process, workflows, and growth goals.
+      </p>
+
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <Field
+          id="fullName"
+          name="fullName"
+          label="Full name"
+          placeholder="Jane Smith"
+          value={form.fullName}
+          error={errors.fullName}
+          onChange={(value) => setForm((current) => ({ ...current, fullName: value }))}
+        />
+
+        <Field
+          id="workEmail"
+          name="workEmail"
+          label="Work email"
+          type="email"
+          placeholder="jane@company.com"
+          value={form.workEmail}
+          error={errors.workEmail}
+          onChange={(value) =>
+            setForm((current) => ({ ...current, workEmail: value }))
+          }
+        />
+
+        <Field
+          id="companyName"
+          name="companyName"
+          label="Company name"
+          placeholder="Acme Inc."
+          value={form.companyName}
+          error={errors.companyName}
+          onChange={(value) =>
+            setForm((current) => ({ ...current, companyName: value }))
+          }
+        />
+
+        <Field
+          id="jobTitle"
+          name="jobTitle"
+          label="Job title"
+          placeholder="VP of Sales"
+          value={form.jobTitle}
+          error={errors.jobTitle}
+          onChange={(value) => setForm((current) => ({ ...current, jobTitle: value }))}
+        />
+
+        <SelectField
+          id="companySize"
+          name="companySize"
+          label="Company size"
+          placeholder="Select company size"
+          value={form.companySize}
+          error={errors.companySize}
+          onChange={(value) =>
+            setForm((current) => ({ ...current, companySize: value }))
+          }
+          options={TEAM_SIZE_OPTIONS}
+        />
+
+        <Field
+          id="phone"
+          name="phone"
+          label="Phone number"
+          type="tel"
+          placeholder="Optional"
+          value={form.phone}
+          onChange={(value) => setForm((current) => ({ ...current, phone: value }))}
+        />
+      </div>
+
+      <div className="mt-4">
+        <SelectField
+          id="demoGoal"
+          name="demoGoal"
+          label="What do you want to focus on?"
+          placeholder="Select a primary goal"
+          value={form.demoGoal}
+          error={errors.demoGoal}
+          onChange={(value) => setForm((current) => ({ ...current, demoGoal: value }))}
+          options={DEMO_GOAL_OPTIONS}
+        />
+      </div>
+
+      <div className="mt-4">
+        <label
+          htmlFor="message"
+          className="mb-1.5 block text-sm font-medium text-on-surface"
+        >
+          Anything else we should know?
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          placeholder="Share your current tools, goals, or any questions you want covered in the demo."
+          value={form.message}
+          onChange={(event) =>
+            setForm((current) => ({ ...current, message: event.target.value }))
+          }
+          className="w-full resize-none rounded-lg border border-light-border bg-warm-white px-4 py-3 body-md text-on-surface focus:border-deep-sage focus:outline-none focus:ring-2 focus:ring-deep-sage/20"
+        />
+        <ValidationError
+          prefix="Message"
+          field="message"
+          errors={state.errors}
+          className="mt-1 text-sm text-error"
+        />
+      </div>
+
+      <ValidationError
+        prefix="Work email"
+        field="workEmail"
+        errors={state.errors}
+        className="mt-3 text-sm text-error"
+      />
+
+      {state.errors ? (
+        <p className="mt-3 text-sm text-error">
+          We couldn&apos;t submit your request right now. Please review the form and
+          try again.
+        </p>
+      ) : null}
+
+      <Button
+        type="submit"
+        className="mt-6 w-full"
+        size="lg"
+        disabled={state.submitting}
       >
-        <h2 className="headline-md text-on-surface">Request a Free Demo</h2>
-        <p className="body-md mt-2 text-on-surface-variant">
-          See how Nexora can transform your agency&apos;s sales flow from lead
-          capture to final closing.
-        </p>
+        {state.submitting ? "Submitting..." : "Book My Demo"}
+      </Button>
 
-        <div className="mt-6 space-y-4">
-          <Field
-            label="Full Name"
-            id="fullName"
-            placeholder="E.g. Rajesh Hamal"
-            value={form.fullName}
-            error={errors.fullName}
-            onChange={(v) => setForm((p) => ({ ...p, fullName: v }))}
-          />
-          <Field
-            label="Phone Number"
-            id="phone"
-            placeholder="+977 98..."
-            type="tel"
-            value={form.phone}
-            error={errors.phone}
-            onChange={(v) => setForm((p) => ({ ...p, phone: v }))}
-          />
-          <Field
-            label="Agency Name"
-            id="agencyName"
-            placeholder="Your Real Estate Company"
-            value={form.agencyName}
-            error={errors.agencyName}
-            onChange={(v) => setForm((p) => ({ ...p, agencyName: v }))}
-          />
-          <Field
-            label="Location"
-            id="location"
-            placeholder="Kathmandu, Nepal"
-            value={form.location}
-            error={errors.location}
-            onChange={(v) => setForm((p) => ({ ...p, location: v }))}
-          />
-
-          <div>
-            <label htmlFor="plan" className="mb-1.5 block text-sm font-medium text-on-surface">
-              Interested Plan
-            </label>
-            <select
-              id="plan"
-              value={form.plan}
-              onChange={(e) => setForm((p) => ({ ...p, plan: e.target.value }))}
-              className={cn(
-                "w-full rounded-lg border bg-warm-white px-4 py-3 body-md text-on-surface focus:border-deep-sage focus:outline-none focus:ring-2 focus:ring-deep-sage/20",
-                errors.plan ? "border-error" : "border-light-border"
-              )}
-            >
-              <option value="">Select a plan</option>
-              {DEMO_PLANS.map((plan) => (
-                <option key={plan} value={plan}>
-                  {plan}
-                </option>
-              ))}
-            </select>
-            {errors.plan && <ErrorText>{errors.plan}</ErrorText>}
-          </div>
-
-          <fieldset>
-            <legend className="mb-2 text-sm font-medium text-on-surface">
-              Preferred Contact Method
-            </legend>
-            <div className="flex flex-wrap gap-3">
-              {CONTACT_METHODS.map((method) => (
-                <label
-                  key={method}
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-light-border px-4 py-2.5 text-sm has-[:checked]:border-deep-sage has-[:checked]:bg-secondary-container/30"
-                >
-                  <input
-                    type="checkbox"
-                    checked={form.contactMethods.includes(method)}
-                    onChange={() => toggleContactMethod(method)}
-                    className="accent-deep-sage"
-                  />
-                  {method}
-                </label>
-              ))}
-            </div>
-            {errors.contactMethods && (
-              <ErrorText>{errors.contactMethods}</ErrorText>
-            )}
-          </fieldset>
-
-          <div>
-            <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-on-surface">
-              Message <span className="text-on-surface-variant">(optional)</span>
-            </label>
-            <textarea
-              id="message"
-              rows={4}
-              placeholder="Tell us about your current workflow challenges..."
-              value={form.message}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, message: e.target.value }))
-              }
-              className="w-full resize-none rounded-lg border border-light-border bg-warm-white px-4 py-3 body-md text-on-surface focus:border-deep-sage focus:outline-none focus:ring-2 focus:ring-deep-sage/20"
-            />
-          </div>
-        </div>
-
-        <Button type="submit" className="mt-6 w-full" size="lg" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : "Request Demo"}
-        </Button>
-        {submitError && (
-          <p className="mt-3 text-center text-sm text-error">{submitError}</p>
-        )}
-        <p className="body-sm mt-4 text-center text-on-surface-variant">
-          No credit card required. Our team typically responds within 2 business
-          hours.
-        </p>
-      </form>
-    </>
+      <p className="body-sm mt-4 text-center text-on-surface-variant">
+        No credit card required. We usually respond within one business day.
+      </p>
+    </form>
   );
 }
 
 function Field({
-  label,
   id,
+  name,
+  label,
   placeholder,
   value,
   error,
   onChange,
   type = "text",
 }: {
-  label: string;
   id: string;
+  name: string;
+  label: string;
   placeholder: string;
   value: string;
   error?: string;
@@ -307,15 +319,64 @@ function Field({
       </label>
       <input
         id={id}
+        name={name}
         type={type}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(event) => onChange(event.target.value)}
+        aria-invalid={Boolean(error)}
         className={cn(
           "w-full rounded-lg border bg-warm-white px-4 py-3 body-md text-on-surface focus:border-deep-sage focus:outline-none focus:ring-2 focus:ring-deep-sage/20",
           error ? "border-error" : "border-light-border"
         )}
       />
+      {error && <ErrorText>{error}</ErrorText>}
+    </div>
+  );
+}
+
+function SelectField({
+  id,
+  name,
+  label,
+  placeholder,
+  value,
+  error,
+  onChange,
+  options,
+}: {
+  id: string;
+  name: string;
+  label: string;
+  placeholder: string;
+  value: string;
+  error?: string;
+  onChange: (value: string) => void;
+  options: readonly string[];
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-on-surface">
+        {label}
+      </label>
+      <select
+        id={id}
+        name={name}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        aria-invalid={Boolean(error)}
+        className={cn(
+          "w-full rounded-lg border bg-warm-white px-4 py-3 body-md text-on-surface focus:border-deep-sage focus:outline-none focus:ring-2 focus:ring-deep-sage/20",
+          error ? "border-error" : "border-light-border"
+        )}
+      >
+        <option value="">{placeholder}</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
       {error && <ErrorText>{error}</ErrorText>}
     </div>
   );
