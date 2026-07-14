@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 80" role="img" aria-labelledby="title desc">
+  <title id="title">Nexora RealtyOS</title>
+  <desc id="desc">A sage house mark beside the Nexora RealtyOS wordmark.</desc>
+  <g transform="translate(4 4)">
+    <path fill="#496B5A" d="M34 3 3 34v29h62V34L34 3Z"/>
+    <path fill="#9DBBA8" d="M34 24 17 41v22h34V41L34 24Z"/>
+    <path fill="#496B5A" d="M8 70h52a5 5 0 0 1 0 10H8a5 5 0 0 1 0-10Z"/>
+  </g>
+  <text x="86" y="54" fill="#263238" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="-.8">Nexora <tspan fill="#496B5A">RealtyOS</tspan></text>
+</svg>

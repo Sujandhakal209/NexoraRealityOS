@@ -21,19 +21,19 @@ export function SectionHeader({
     <div
       id={id}
       className={cn(
-        "mb-10 md:mb-12",
+        "mb-9 md:mb-12",
         align === "center" && "mx-auto max-w-3xl text-center",
         className
       )}
     >
       {eyebrow && (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+        <p className="eyebrow mb-4">
           {eyebrow}
         </p>
       )}
-      <h2 className="headline-lg text-on-surface">{title}</h2>
+      <h2 className="headline-lg text-on-surface text-balance">{title}</h2>
       {subtitle && (
-        <p className="body-lg mt-4 text-on-surface-variant">{subtitle}</p>
+        <p className="body-md mt-4 text-on-surface-variant text-pretty">{subtitle}</p>
       )}
     </div>
   );

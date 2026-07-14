@@ -1,5 +1,6 @@
 export const metadata = {
-  title: "Templates",
+  title: "Real-Estate Website Templates",
+  description: "Explore Nexora RealtyOS website templates for agencies, brokers, developers, housing projects, and rental businesses in Nepal.",
 };
 
 export default function TemplatesLayout({
