@@ -1,38 +1,74 @@
-const icons: Record<string, React.ReactNode> = {
-  website: "🌐",
-  template: "📐",
-  design: "🎨",
-  listing: "🏠",
-  crm: "👥",
-  visit: "📍",
-  followup: "🔔",
-  agent: "💼",
-  chat: "💬",
-  social: "📱",
-  video: "🎬",
-  tracking: "📊",
-  analytics: "📈",
-  nepal: "🇳🇵",
-  agency: "🏢",
-  broker: "🤝",
-  land: "🗺️",
-  housing: "🏗️",
-  rental: "🔑",
-  lead: "✉️",
-  deal: "✅",
+import {
+  BarChart3,
+  BellRing,
+  BriefcaseBusiness,
+  Building2,
+  CalendarCheck2,
+  Check,
+  CircleCheck,
+  ClipboardList,
+  FileText,
+  Globe2,
+  Handshake,
+  House,
+  KeyRound,
+  LayoutDashboard,
+  Map,
+  MapPin,
+  Megaphone,
+  MessageCircle,
+  Palette,
+  PlaySquare,
+  type LucideIcon,
+  Users,
+} from "lucide-react";
+
+const icons: Record<string, LucideIcon> = {
+  website: Globe2,
+  template: LayoutDashboard,
+  design: Palette,
+  listing: House,
+  crm: Users,
+  visit: CalendarCheck2,
+  followup: BellRing,
+  agent: BriefcaseBusiness,
+  chat: MessageCircle,
+  social: Megaphone,
+  video: PlaySquare,
+  tracking: BarChart3,
+  analytics: BarChart3,
+  nepal: MapPin,
+  agency: Building2,
+  broker: Handshake,
+  land: Map,
+  housing: Building2,
+  rental: KeyRound,
+  lead: Users,
+  deal: CircleCheck,
+  notes: FileText,
 };
 
-interface FeatureCardProps {
-  title: string;
-  description: string;
-  icon: string;
-}
+interface FeatureCardProps { title: string; description: string; icon: string; }
 
 export function FeatureCard({ title, description, icon }: FeatureCardProps) {
+  const Icon = icons[icon] ?? ClipboardList;
   return (
-    <article className="card-hover rounded-xl border border-light-border bg-surface-container-lowest p-5 shadow-low">
-      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-secondary-container text-lg">
-        <span aria-hidden="true">{icons[icon] ?? "✦"}</span>
+    <article className="card-hover rounded-2xl border border-light-border bg-white p-5 shadow-low md:p-6">
+      <div data-card-icon className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-secondary-container/70 text-primary">
+        <Icon size={21} strokeWidth={1.8} aria-hidden="true" />
+      </div>
+      <h3 className="text-[15px] font-semibold leading-6 text-on-surface">{title}</h3>
+      <p className="body-sm mt-2 text-on-surface-variant">{description}</p>
+    </article>
+  );
+}
+
+export function AudienceCard({ title, description, icon }: FeatureCardProps) {
+  const Icon = icons[icon] ?? Building2;
+  return (
+    <article className="card-hover rounded-2xl border border-light-border bg-white p-6 shadow-low">
+      <div data-card-icon className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-surface-container text-primary">
+        <Icon size={21} strokeWidth={1.8} aria-hidden="true" />
       </div>
       <h3 className="text-base font-semibold text-on-surface">{title}</h3>
       <p className="body-sm mt-2 text-on-surface-variant">{description}</p>
@@ -40,93 +76,25 @@ export function FeatureCard({ title, description, icon }: FeatureCardProps) {
   );
 }
 
-export function AudienceCard({
-  title,
-  description,
-  icon,
-}: FeatureCardProps) {
-  return (
-    <article className="card-hover rounded-xl border border-light-border bg-surface-container-lowest p-6 shadow-low">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-surface-container text-xl">
-        <span aria-hidden="true">{icons[icon] ?? "✦"}</span>
-      </div>
-      <h3 className="text-lg font-semibold text-on-surface">{title}</h3>
-      <p className="body-sm mt-2 text-on-surface-variant">{description}</p>
-    </article>
-  );
-}
-
-export function StepCard({
-  step,
-  text,
-}: {
-  step: number;
-  text: string;
-}) {
+export function StepCard({ step, text }: { step: number; text: string }) {
   return (
     <div className="flex gap-4">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-on-primary">
-        {step}
-      </div>
-      <p className="body-md pt-2 text-on-surface">{text}</p>
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">{step}</div>
+      <p className="body-md pt-1.5 text-on-surface">{text}</p>
     </div>
   );
 }
 
-/**
- * FlowIcon  same props (icon, label) as before.
- * `index` and `total` are optional additions so the parent page can pass
- * the step's position in the sequence; when omitted, the component falls
- * back to its original flat styling so nothing breaks if unused.
- */
-export function FlowIcon({
-  icon,
-  label,
-  index = 0,
-  total = 1,
-}: {
-  icon: string;
-  label: string;
-  index?: number;
-  total?: number;
-}) {
+export function FlowIcon({ icon, label, index = 0, total = 1 }: { icon: string; label: string; index?: number; total?: number }) {
+  const Icon = icons[icon] ?? ClipboardList;
   const isLast = index === total - 1;
-  // 0 -> lightest tint, 1 -> deepest sage, eased so early steps don't look washed out
-  const progress = total > 1 ? index / (total - 1) : 0;
-
   return (
-    <div className="group flex flex-col items-center gap-3 text-center">
-      <div
-        className={`relative flex h-16 w-16 items-center justify-center rounded-full text-2xl shadow-low ring-1 ring-inset ring-black/5 transition-transform duration-200 group-hover:-translate-y-1 group-hover:shadow-medium md:h-[4.25rem] md:w-[4.25rem] ${
-          isLast
-            ? "bg-deep-sage text-on-primary shadow-medium ring-deep-sage/20"
-            : "bg-secondary-container text-on-secondary-container"
-        }`}
-        style={
-          !isLast
-            ? {
-                backgroundColor: `color-mix(in srgb, var(--color-secondary-container) ${100 - progress * 35}%, var(--color-deep-sage) ${progress * 35}%)`,
-              }
-            : undefined
-        }
-      >
-        <span aria-hidden="true">{icons[icon] ?? "✦"}</span>
-        {isLast && (
-          <span
-            className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-on-primary text-[10px] text-deep-sage shadow-low"
-            aria-hidden="true"
-          >
-            ✓
-          </span>
-        )}
+    <div className="group flex min-w-[96px] flex-col items-center gap-3 text-center">
+      <div className={`relative flex h-14 w-14 items-center justify-center rounded-full border shadow-low transition-transform group-hover:-translate-y-1 ${isLast ? "border-primary bg-tertiary text-white" : "border-primary/15 bg-primary text-white"}`}>
+        <Icon size={20} strokeWidth={1.8} aria-hidden="true" />
+        {isLast && <span className="absolute -bottom-1 -right-1 grid h-5 w-5 place-items-center rounded-full bg-white text-primary shadow-low"><Check size={12} /></span>}
       </div>
-      <span
-        className={`max-w-[92px] text-xs font-medium leading-snug ${
-          isLast ? "font-semibold text-on-surface" : "text-on-surface-variant"
-        }`}
-      >
-        {label}
-      </span>
+      <span className="max-w-[96px] text-[11px] font-semibold leading-4 text-on-surface-variant">{label}</span>
     </div>
   );
 }

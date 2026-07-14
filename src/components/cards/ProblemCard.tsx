@@ -31,11 +31,11 @@ interface ProblemCardProps {
 
 export function ProblemCard({ title, description, icon }: ProblemCardProps) {
   return (
-    <article className="card-hover rounded-xl border border-light-border bg-surface-container-lowest p-6 shadow-low">
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-[#fff0eb] text-[#e07a5f]">
+    <article className="card-hover rounded-2xl border border-light-border bg-white p-6 shadow-low">
+      <div data-card-icon className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-[#fff0eb] text-[#d65d4a]">
         {icons[icon]}
       </div>
-      <h3 className="headline-md text-lg font-semibold text-on-surface">{title}</h3>
+      <h3 className="text-[15px] font-semibold text-on-surface">{title}</h3>
       <p className="body-sm mt-2 text-on-surface-variant">{description}</p>
     </article>
   );

@@ -11,11 +11,16 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nexora RealtyOS  Complete Real-Estate Business System",
+    default: "Nexora RealtyOS | Complete Real-Estate Business System",
     template: "%s | Nexora RealtyOS",
   },
   description:
     "Nexora RealtyOS helps Nepali real-estate agencies manage listings, leads, site visits, follow-ups, and deals from one platform. Listings Dekhi Leads Samma, Leads Dekhi Deals Samma.",
+  openGraph: {
+    title: "Nexora RealtyOS",
+    description: "The complete operating system for modern real-estate agencies in Nepal.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
